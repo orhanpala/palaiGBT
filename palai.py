@@ -1,6 +1,8 @@
 import streamlit as st
-import google.generativeai as genai
-import os # Hata yönetimi için eklendi
+# *** DEĞİŞİKLİK BURADA ***
+import google.genai as genai 
+# Bu import, requirements.txt'deki 'google-genai-sdk' paketine karşılık gelir.
+import os 
 
 # --- YAPILANDIRMA VE HATA KONTROLÜ ---
 MODEL_ADI = "gemini-2.5-pro"
@@ -75,7 +77,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- GEMINI BAĞLANTISI ---
-# Konfigürasyon yukarıda yapıldığı için bu fonksiyon sadece model objesini döndürmeli.
 def get_model():
     try:
         # Chat geçmişi kullanmıyorsanız, her seferinde yeni bir model oluşturmak yeterlidir.
@@ -141,7 +142,7 @@ if len(st.session_state.messages) == 0:
     st.markdown("<br><br><br>", unsafe_allow_html=True)
     st.markdown('<div class="big-title">PALAİ</div>', unsafe_allow_html=True)
     
-    # Kişiselleştirme: Kullanıcı adını ekleyelim
+    # Kişiselleştirme
     st.markdown(f'<div class="subtitle">Orhan Pala | Yapay Zeka Asistanı</div>', unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -152,7 +153,6 @@ if len(st.session_state.messages) == 0:
             input_val = st.session_state.baslangic_input
             if input_val:
                 st.session_state.temp_input = input_val
-                # st.rerun() buraya gelmiyor, aşağıda tetikleniyor
 
         st.text_input(
             "Ara", 
